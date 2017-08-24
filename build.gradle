@@ -25,33 +25,35 @@ task createTests {
                 import static org.testng.Assert.assertTrue;
                 
                 public class MyTest${it} {
+                    public static final long timeout = 200L;
+                    
                     @Test
                     public void aTest() throws InterruptedException {
-                        Thread.sleep(200);
+                        Thread.sleep(timeout);
                         assertTrue(true);
                     }
                     
                     @Test
                     public void bTest() throws InterruptedException  {
-                        Thread.sleep(200);
+                        Thread.sleep(timeout);
                         assertTrue(true);
                     }
                     
                     @Test
                     public void cTest() throws InterruptedException  {
-                        Thread.sleep(200);
+                        Thread.sleep(timeout);
                         assertTrue(true);
                     }
                     
                     @Test
                     public void dTest() throws InterruptedException  {
-                        Thread.sleep(200);
+                        Thread.sleep(timeout);
                         assertTrue(true);
                     }
                     
                     @Test
                     public void eTest() throws InterruptedException  {
-                        Thread.sleep(2000);
+                        Thread.sleep(200);
                         assertTrue(true);
                     }
                 }
