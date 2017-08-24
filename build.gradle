@@ -1,0 +1,61 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testImplementation 'org.testng:testng:6.11'
+}
+
+test {
+    useTestNG()
+    maxParallelForks = project.gradle.startParameter.maxWorkerCount
+}
+
+task createTests {
+    doLast {
+        (1..200).each {
+            def testFile = file("src/test/java/MyTest${it}.java")
+            testFile.parentFile.mkdirs()
+            testFile.createNewFile()
+            file("src/test/java/MyTest${it}.java").text = """
+                import java.lang.InterruptedException;
+                import org.testng.annotations.Test;
+                import static org.testng.Assert.assertTrue;
+                
+                public class MyTest${it} {
+                    @Test
+                    public void aTest() throws InterruptedException {
+                        Thread.sleep(200);
+                        assertTrue(true);
+                    }
+                    
+                    @Test
+                    public void bTest() throws InterruptedException  {
+                        Thread.sleep(200);
+                        assertTrue(true);
+                    }
+                    
+                    @Test
+                    public void cTest() throws InterruptedException  {
+                        Thread.sleep(200);
+                        assertTrue(true);
+                    }
+                    
+                    @Test
+                    public void dTest() throws InterruptedException  {
+                        Thread.sleep(200);
+                        assertTrue(true);
+                    }
+                    
+                    @Test
+                    public void eTest() throws InterruptedException  {
+                        Thread.sleep(2000);
+                        assertTrue(true);
+                    }
+                }
+            """
+        }
+    }
+}
